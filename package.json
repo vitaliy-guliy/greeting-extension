@@ -18,8 +18,8 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "greeting-extension.helloWorld",
-				"title": "Hello World"
+				"command": "greeting-extension.open-webview",
+				"title": "Open WebView"
 			}
 		]
 	},

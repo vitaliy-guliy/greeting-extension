@@ -8,16 +8,18 @@ export const greetingViewType = 'greeting';
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	console.log('### greeting-extension::activate');
+	// vscode.window.registerWebviewPanelSerializer(greetingViewType, new GreetingPageSerializer());
 
-	vscode.window.registerWebviewPanelSerializer(greetingViewType, new GreetingPageSerializer());
-
-	let disposable = vscode.commands.registerCommand('greeting-extension.helloWorld', () => {
-		vscode.window.showInformationMessage('Hello World!');
+	let disposable = vscode.commands.registerCommand('greeting-extension.open-webview', () => {
+		openWebView();
 	});
 
 	context.subscriptions.push(disposable);
 
+	openWebView();
+}
+
+function openWebView() {
     // Open Greeting tab
 	const panel = vscode.window.createWebviewPanel(greetingViewType, "Greeting",
 		{
