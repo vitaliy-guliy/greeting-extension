@@ -28,8 +28,10 @@ function openWebView() {
 		},
 		{
 	});
-	
-	panel.webview.html = "Hello";
+
+	const url = "https://nodejs.org/en/knowledge/HTTP/servers/how-to-create-a-HTTP-server/";
+	const style = "position: absolute; width: calc(100% - 30px); height: calc(100% - 10px);";
+	panel.webview.html = `<iframe src='${url}' style='${style}'></iframe>`;
 }
 
 // this method is called when your extension is deactivated
