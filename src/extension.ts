@@ -16,10 +16,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 
-	openWebView();
+	// openWebView();
+	for (const envName in process.env) {
+		if (envName.startsWith("GREETING_")) {
+			const envValue = process.env[envName];
+			openWebView(envValue);
+		}
+	}
 }
 
-function openWebView() {
+function openWebView(openURL?: string) {
     // Open Greeting tab
 	const panel = vscode.window.createWebviewPanel(greetingViewType, "Greeting",
 		{
@@ -29,9 +35,13 @@ function openWebView() {
 		{
 	});
 
-	const url = "https://nodejs.org/en/knowledge/HTTP/servers/how-to-create-a-HTTP-server/";
-	const style = "position: absolute; width: calc(100% - 30px); height: calc(100% - 10px);";
-	panel.webview.html = `<iframe src='${url}' style='${style}'></iframe>`;
+	if (openURL) {
+		// const url = "https://nodejs.org/en/knowledge/HTTP/servers/how-to-create-a-HTTP-server/";
+		const style = "position: absolute; width: calc(100% - 30px); height: calc(100% - 10px);";
+		panel.webview.html = `<iframe src='${openURL}' style='${style}'></iframe>`;
+	} else {
+		panel.webview.html = "Hello";
+	}
 }
 
 // this method is called when your extension is deactivated
