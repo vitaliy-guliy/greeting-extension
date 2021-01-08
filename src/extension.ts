@@ -16,7 +16,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 
-	// openWebView();
 	for (const envName in process.env) {
 		if (envName.startsWith("GREETING_")) {
 			const envValue = process.env[envName];
@@ -36,7 +35,6 @@ function openWebView(openURL?: string) {
 	});
 
 	if (openURL) {
-		// const url = "https://nodejs.org/en/knowledge/HTTP/servers/how-to-create-a-HTTP-server/";
 		const style = "position: absolute; width: calc(100% - 30px); height: calc(100% - 10px);";
 		panel.webview.html = `<iframe src='${openURL}' style='${style}'></iframe>`;
 	} else {
